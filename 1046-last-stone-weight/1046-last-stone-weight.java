@@ -8,19 +8,16 @@ class Solution {
             pq.add(weight);
         
         while(pq.size()>=2){
-            int y=pq.remove();
-           
             int x=pq.remove();
+            int y=pq.remove();
             
-            if(x==y)
+            if(x==y){
                 continue;
-            else if(x!=y)
-                pq.add(y-x);
-            
-            
+            }else{
+                pq.add(x-y);
+            }
         }
-        if(pq.size()==0)
-                return 0;
-        return pq.remove();
+        if(pq.size()==0)return 0;
+        else return pq.remove();
     }
 }
