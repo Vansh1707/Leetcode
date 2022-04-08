@@ -21,24 +21,20 @@ class Solution {
         q.addLast(root);
         int levcount=1;
         int max=-(int)1e9;
-        int sum=0;
         int maxsumlevel=1;
         
         while(q.size()>0){
             int size=q.size();
-            List<Integer>lev=new ArrayList<>();
+            int sum=0;
             while(size-->0){
                 TreeNode rn=q.removeFirst();
-                lev.add(rn.val);
+                sum+=rn.val;
                 if(rn.left!=null){//add child to queue
                     q.addLast(rn.left);
                 }
                 if(rn.right!=null){
                     q.addLast(rn.right);
                 }
-            }
-            for(int i=0;i<lev.size();i++){
-                sum+=lev.get(i);
             }
             if(sum>max){
                 maxsumlevel=levcount;
