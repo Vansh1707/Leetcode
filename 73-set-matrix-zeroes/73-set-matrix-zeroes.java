@@ -1,11 +1,11 @@
 class Solution {
     private void make0(int mat[][],int n,int m,int i,int j){
         for(int k=0;k<m;k++){
-            mat[i][k]=0;//horizontally zero
+            mat[i][k]=0;//horizontally zero i is row
         }
         
         for(int k=0;k<n;k++){
-            mat[k][j]=0;//vertically zero
+            mat[k][j]=0;//vertically zero j is col
         }
     }
     public void setZeroes(int[][] mat) {
