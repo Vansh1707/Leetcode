@@ -14,24 +14,25 @@
  * }
  */
 class Solution {
-    List<TreeNode> li = new ArrayList<>();
-    
-    public void addInList(TreeNode root) {
-        if(root == null)
-            return;
-        addInList(root.left);
-        li.add(root);
-        addInList(root.right);
+    ArrayList<TreeNode>list=new ArrayList<>();
+    public void inorder(TreeNode root){
+        if(root==null)return;
+        
+        inorder(root.left);
+        list.add(root);
+        inorder(root.right);
     }
     public TreeNode increasingBST(TreeNode root) {
-        addInList(root);
-        int len = li.size();
-        for(int i=0; i<len-1; i++) {
-            li.get(i).right = li.get(i+1);
-            li.get(i).left = null;
+        if(root==null)return root;
+        inorder(root);
+        
+        for(int i=0;i<list.size()-1;i++){
+            list.get(i).right=list.get(i+1);
+            list.get(i).left=null;
         }
-        li.get(len-1).left = null;
-        li.get(len-1).right = null;
-        return li.get(0);
+        list.get(list.size()-1).left=null;
+        list.get(list.size()-1).right=null;
+        
+        return list.get(0);
     }
 }
