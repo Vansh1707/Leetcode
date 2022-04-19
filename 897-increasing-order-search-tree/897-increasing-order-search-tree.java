@@ -14,25 +14,49 @@
  * }
  */
 class Solution {
-    ArrayList<TreeNode>list=new ArrayList<>();
-    public void inorder(TreeNode root){
-        if(root==null)return;
+    public TreeNode getRightMostNode(TreeNode node,TreeNode curr){
+      while(node.right!=null && node.right!=curr){
+          node=node.right;
+      }
+      return node;
+  }
+//     ArrayList<TreeNode>list=new ArrayList<>();
+//     public void inorder(TreeNode root){
+//         if(root==null)return;
         
-        inorder(root.left);
-        list.add(root);
-        inorder(root.right);
-    }
+//         inorder(root.left);
+//         list.add(root);
+//         inorder(root.right);
+//     }
     public TreeNode increasingBST(TreeNode root) {
         if(root==null)return root;
-        inorder(root);
+        ArrayList<TreeNode>ans=new ArrayList<>();
+        TreeNode curr=root;
+      while(curr!=null){
+          TreeNode left=curr.left;
+          if(left==null){
+              ans.add(curr);
+              curr=curr.right;
+          }else{
+              TreeNode rightmostnode=getRightMostNode(left,curr);
+              if(rightmostnode.right==null){
+                  rightmostnode.right=curr; //thread created
+                  curr=curr.left;
+              }else{
+                  rightmostnode.right=null; // thread cut
+                  ans.add(curr);
+                  curr=curr.right;
+              }
+          }
+      }
         
-        for(int i=0;i<list.size()-1;i++){
-            list.get(i).right=list.get(i+1);
-            list.get(i).left=null;
+        for(int i=0;i<ans.size()-1;i++){
+            ans.get(i).right=ans.get(i+1);
+            ans.get(i).left=null;
         }
-        list.get(list.size()-1).left=null;
-        list.get(list.size()-1).right=null;
+        ans.get(ans.size()-1).left=null;
+        ans.get(ans.size()-1).right=null;
         
-        return list.get(0);
+        return ans.get(0);
     }
 }
