@@ -1,20 +1,20 @@
 class MyHashSet {
-    List<Integer>list;
-
+    int[]set;
     public MyHashSet() {
-        list=new ArrayList<>();
+        set=new int[1000000+1];
+        Arrays.fill(set,-1);
     }
     
     public void add(int key) {
-        if(!list.contains(key))list.add(key);
+        set[key]=key;
     }
     
     public void remove(int key) {
-        if(list.contains(key))list.remove(new Integer(key));
+        set[key]=-1;
     }
     
     public boolean contains(int key) {
-        return list.contains(key);
+        return set[key]!=-1;
     }
 }
 
