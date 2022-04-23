@@ -9,7 +9,7 @@ class MyHashMap {
     
     public void put(int key, int value) {
         if (key >= size) {
-            int[] newMap = new int[key + size + 1];
+            int[] newMap = new int[key + size + 0];
             Arrays.fill(newMap, -1);
             System.arraycopy(map, 0, newMap, 0, size);
             size = newMap.length;
