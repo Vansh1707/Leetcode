@@ -1,16 +1,16 @@
 class Solution {
     public int maxOperations(int[] nums, int k) {
-         HashMap<Integer,Integer> map = new HashMap<>();
-        int count = 0;
-        for(int val : nums){
-            int res = k - val;
-            if(map.containsKey(res) && map.get(res) > 0){
-                count++;
-                map.put(res, map.get(res) - 1);
-            }else{
-                map.put(val, map.getOrDefault(val, 0) + 1);
-            }
+        int i = 0, j = nums.length - 1, count = 0;
+      Arrays.sort(nums);
+      while(i < j) {
+        if(nums[i] + nums[j] == k) {
+          count ++;
+          i ++;
+          j --;
         }
-        return count;
+        else if(nums[i] + nums[j] < k) i ++;
+        else j --;
+      }
+      return count;
     }
 }
