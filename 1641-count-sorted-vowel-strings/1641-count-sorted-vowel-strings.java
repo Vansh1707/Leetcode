@@ -1,21 +1,12 @@
 class Solution {
-    char[]ch=new char[]{'a','e','i','o','u'};
-    
-    int cvs(int len,char lastchar){
-        if(len==0)return 1;
-        int temp=0;
-        for(char c:ch){
-            if(lastchar>=c){
-                temp+=cvs(len-1,c);
+    public int countVowelStrings(int n) {
+        int[][]dp=new int[n+1][5+1];
+        
+        for(int i=1;i<=n;i++){
+            for(int j=1;j<=5;j++){
+                dp[i][j]= (i>1 ? dp[i-1][j]:1) +dp[i][j-1];
             }
         }
-        return temp;
-    }
-    public int countVowelStrings(int n) {
-        int ans=0;
-        for(char c:ch){
-            ans+=cvs(n-1,c);
-        }
-        return ans;
+        return dp[n][5];
     }
 }
