@@ -33,7 +33,10 @@ class Solution {
             while(size-->0){
                 Node rn=q.removeFirst();
                 if(prev==null)prev=rn;
-                else prev=prev.next=rn;
+                else{
+                    prev.next=rn;
+                    prev=rn;
+                } 
                     
                 if(rn.left!=null){//add child to queue
                     q.addLast(rn.left);
