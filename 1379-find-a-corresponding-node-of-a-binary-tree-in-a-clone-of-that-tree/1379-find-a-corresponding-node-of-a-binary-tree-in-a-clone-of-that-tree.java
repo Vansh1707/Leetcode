@@ -9,22 +9,19 @@
  */
 
 class Solution {
+    public final TreeNode travel(final TreeNode root, final TreeNode target){
+        TreeNode res;
+        if(root == null) 
+            return null;
+        if(root.val == target.val)// if found target return node which has same value as target
+            return root;
+        res = travel(root.left, target);// go left
+        if(res == null) // if did't found go right;
+            res = travel(root.right, target);
+        return res;
+    }
+    
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
-        if (original == null) return null;
-        
-        if (original == target) {
-            return cloned;
-        }
-        
-        TreeNode left = getTargetCopy(original.left, cloned.left, target);
-        TreeNode right = getTargetCopy(original.right, cloned.right, target);
-        
-        if (left != null || right != null) {
-            if (left == null) return right;
-            
-            return left;
-        }
-        
-        return null;
+        return travel(cloned, target);
     }
 }
