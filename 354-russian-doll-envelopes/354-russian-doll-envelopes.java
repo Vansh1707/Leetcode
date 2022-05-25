@@ -1,7 +1,7 @@
 class Solution {
     public int binarySearch(int arr[],int si,int ei,int tar){
         while(si<ei){
-            int mid=si+(ei-si)/2;
+            int mid=(si+ei)/2;
             if(arr[mid]==tar){
                 return mid;
             }else if(arr[mid]<tar){
