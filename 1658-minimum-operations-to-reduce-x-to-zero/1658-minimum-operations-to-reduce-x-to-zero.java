@@ -5,18 +5,20 @@ class Solution {
         for(int ele:nums)sum+=ele;
         int tar=sum-x;
         if(tar==0)return n;
-        HashMap<Integer,Integer>hm=new HashMap<>();
-        hm.put(0,-1);
-        int prefsum=0,res=-1;
+        if(tar<0)return -1;
+        int li=0;
+        int prefsum=0;
+        int res=-1;
+        
         for(int i=0;i<n;i++){
             prefsum+=nums[i];
-            if(hm.containsKey(prefsum-tar)){
-                res=Math.max(res,i-hm.get(prefsum-tar));
+            while(prefsum>tar){
+                prefsum-=nums[li++];
             }
-            hm.put(prefsum,i);
-        }
-        return res==-1?-1:n-res;
-        
-        
+            if(prefsum==tar){
+                res=Math.max(res,i-li+1);
+            }
+        }        
+        return res==-1 ? -1 : n-res;
     }
 }
