@@ -12,8 +12,10 @@ class Solution {
             if(pq.size()>ladders){
                 bricks=bricks-pq.remove();
             }
-            if(bricks<0)
+            if(bricks<0){
+                ladders--;
                 return i;
+            }
         }
         return n-1;
     }
