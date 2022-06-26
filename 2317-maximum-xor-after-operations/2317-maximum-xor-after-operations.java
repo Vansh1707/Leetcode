@@ -1,0 +1,12 @@
+class Solution {
+   
+    public int maximumXOR(int[] nums) {
+         int max=0;
+        
+        for(int n:nums){
+            max=max | n;
+        }
+        
+        return max;
+    }
+}
