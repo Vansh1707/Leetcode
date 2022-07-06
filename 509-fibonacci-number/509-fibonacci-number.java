@@ -1,13 +1,19 @@
 class Solution {
-    public int fibomem(int n,int[]dp){
-        if(n<=1)return dp[n]=n;
-        if(dp[n]!=0)return dp[n];
-        int ans=fibomem(n-1,dp)+fibomem(n-2,dp);
-        return dp[n]=ans;
+    public int fiboTab(int N,int[]dp){
+        for(int n=0;n<=N;n++){
+            if(n<=1){
+                dp[n]=n;
+                continue;
+            }
+           
+            int ans=dp[n-1]+dp[n-2];
+             dp[n]=ans;
+        }
+        return dp[N];
     }
     public int fib(int n) {
         int[]dp=new int[n+1];
-        return fibomem(n,dp);
+        return fiboTab(n,dp);
         
     }
 }
