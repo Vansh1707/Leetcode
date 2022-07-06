@@ -9,7 +9,6 @@ class Solution {
             
         }
         for(int j=n-1;j>=0;j--){
-            if(nums[j]>min[j]){
                 while(st.size()>0 && st.peek()<=min[j]){
                     st.pop();
                 }
@@ -18,7 +17,7 @@ class Solution {
                 }
                 st.push(nums[j]);
             }
-        }
+
         return false;
     }
 }
