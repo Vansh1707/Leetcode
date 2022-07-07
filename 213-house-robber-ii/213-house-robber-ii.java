@@ -1,0 +1,28 @@
+class Solution {
+    public int rob_II(int[] arr, int si, int ei, int[] dp) {
+        if (si > ei)
+            return 0;
+
+        if (dp[si] != -1)
+            return dp[si];
+
+        int robCurrHouse = arr[si] + rob_II(arr, si + 2, ei, dp);
+        int notRobCurrHouse = rob_II(arr, si + 1, ei, dp);
+
+        return dp[si] = Math.max(robCurrHouse, notRobCurrHouse);
+    }
+    public int rob(int[] nums) {
+         int n = nums.length;
+        if (n == 0 || n == 1) {
+            return n == 1 ? nums[0] : 0;
+        }
+        int[] dp1 = new int[n];
+        Arrays.fill(dp1, -1);
+
+        int[] dp2 = new int[n];
+        Arrays.fill(dp2, -1);
+
+        return Math.max(rob_II(nums, 0, n - 2, dp1), rob_II(nums, 1, n - 1, dp2));
+
+    }
+}
