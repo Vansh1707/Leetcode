@@ -1,36 +1,15 @@
 class Solution {
-    public int maxProfit(int K, int[] prices) {
-        int n=prices.length;
-        if(n==0)return 0;
-        int[][][]dp=new int[n][K+1][2];
-        
-        for(int i=0;i<n;i++){
-            for(int k=0;k<=K;k++){
-                for(int x=0;x<2;x++){
-                    if(k==0){
-                        if(x==0){
-                            dp[i][k][x]=0;
-                        }else{
-                            dp[i][k][x]=-(int)1e9;
-                        }
-                    }else{
-                        if(i==0){
-                            if(x==0){
-                                dp[i][k][x]=Math.max(0,-(int)1e9+prices[i]);
-                            }else{
-                                dp[i][k][x]=Math.max(-(int)1e9,0-prices[i]);
-                            }
-                        }else{
-                            if(x==0){
-                                dp[i][k][x]=Math.max(dp[i-1][k][0],dp[i-1][k][1]+prices[i]);
-                            }else{
-                                dp[i][k][x]=Math.max(dp[i-1][k][1],dp[i-1][k-1][0]-prices[i]);
-                            }
-                        }
-                    }
-                }
+    public int maxProfit(int k, int[] prices) {
+         if (prices.length == 0) return 0;
+        int n = prices.length;
+        int[][] dp = new int[k + 1][n];
+        for (int t = 1; t <= k; t++) {
+            int max = Integer.MIN_VALUE;
+            for (int d = 1; d < n; d++) {
+                max = Math.max(max, dp[t - 1][d - 1] - prices[d - 1]);
+                dp[t][d] = Math.max(max + prices[d], dp[t][d - 1]);
             }
         }
-        return dp[n-1][K][0];
+        return dp[k][n - 1];
     }
 }
