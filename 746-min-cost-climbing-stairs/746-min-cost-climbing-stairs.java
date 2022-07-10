@@ -7,7 +7,7 @@ class Solution {
                 dp[n]=cost[n];
                 continue;
             }
-            int ans=Math.min(dp[n-1],dp[n-2])+cost[n];
+            int ans=Math.min(dp[n-1],dp[n-2]) + cost[n];
             dp[n]=ans;
         }
         return Math.min(dp[N-1],dp[N-2]);
