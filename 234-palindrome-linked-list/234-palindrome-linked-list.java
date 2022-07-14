@@ -40,7 +40,10 @@ class Solution {
         ListNode nhead=mid.next;
         mid.next=null;
         nhead=reverse(nhead);
-        
+        // while(head!=null){
+        //     System.out.println(head.val);
+        //     head=head.next;
+        // }
         ListNode c1=head,c2=nhead;
         boolean res=true;
         while(c2!=null){
