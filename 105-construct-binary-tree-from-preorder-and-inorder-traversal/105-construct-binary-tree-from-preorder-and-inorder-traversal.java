@@ -15,14 +15,13 @@
  */
 class Solution {
     public TreeNode buildTree(int[] preorder,int psi,int pei,int[] inorder,int isi,int iei){
-        if(psi>pei) return null;
+        if(psi>pei)return null;
         
         int idx=isi;
         while(inorder[idx]!=preorder[psi])idx++;
         
         int numofele=idx-isi;
         TreeNode root=new TreeNode(preorder[psi]);
-        
         root.left=buildTree(preorder,psi+1,psi+numofele,inorder,isi,idx-1);
         root.right=buildTree(preorder,psi+1+numofele,pei,inorder,idx+1,iei);
         
