@@ -6,7 +6,7 @@ class Solution {
             return 1;
         }
         int count=0;
-        for(int i=idx;i<=n;i++){            
+        for(int i=idx;i<=n-k+1;i++){            
             smallans.add(i);
             count+=combine(n,k-1,i+1,ans,smallans);
             smallans.remove(smallans.size()-1);   
