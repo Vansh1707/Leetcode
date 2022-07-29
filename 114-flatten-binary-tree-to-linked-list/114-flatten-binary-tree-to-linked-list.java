@@ -14,19 +14,21 @@
  * }
  */
 class Solution {
-    TreeNode pre = null;
-
-public void flatten(TreeNode root) {
-    
-    if(root == null){
-        return;
+    public void flatten(TreeNode root) {
+        if(root==null)return;
+        
+        TreeNode templeft=root.left;
+        TreeNode tempright=root.right;
+        
+        root.left=null;
+        
+        flatten(templeft);
+        flatten(tempright);
+        
+        root.right=templeft;
+        TreeNode curr=root;
+        while(curr.right!=null)
+            curr=curr.right;
+        curr.right=tempright;
     }
-    
-    flatten(root.right); //we will try to reach to the right most node first
-    flatten(root.left);
-    
-    root.right = pre; //After reaching to right most node connect it to the pre node
-    root.left = null; // make left node null simultaneously
-    pre = root;       //make sure to update the pre node to root
-}
 }
