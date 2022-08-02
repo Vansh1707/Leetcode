@@ -8,8 +8,8 @@ class Solution {
         int count=0;
         
         for(int v : graph[src]) {
-            dfs(graph, v, ans,smallans);
-            count+=smallans.remove(smallans.size()-1);
+            count+=dfs(graph, v, ans,smallans);
+            smallans.remove(smallans.size()-1);
         }
         return count;
     }
